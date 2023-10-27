@@ -4,7 +4,7 @@ public abstract class Weapon {
     private int damage;
     private boolean melee = false;
 
-    public Weapon(String name, int apcost, int damage, boolean melee) {
+    protected Weapon(String name, int apcost, int damage, boolean melee) {
         this.name = name;
         this.apcost = apcost;
         this.damage = damage;
