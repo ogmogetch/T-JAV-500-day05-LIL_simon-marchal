@@ -2,6 +2,7 @@ public abstract class Monster extends Unit {
 
     protected int damage = 0;
     protected int apcost = 0;
+    protected int ap = getAp();
 
     protected Monster(String name, int hp, int ap) {
         super(name, hp, ap);
@@ -30,7 +31,7 @@ public abstract class Monster extends Unit {
             System.out.println(getName() + ": I'm too far away from " + fighter.getName());
             return false;
         }
-        if (getAp() < apcost) {
+        if (ap < apcost) {
             return false;        }
         ap -= apcost;
         System.out.println(getName() + " attacks " + fighter.getName());
