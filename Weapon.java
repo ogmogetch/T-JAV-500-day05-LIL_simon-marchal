@@ -1,0 +1,30 @@
+public abstract class Weapon {
+    private String name;
+    private int apcost;
+    private int damage;
+    private boolean melee = false;
+
+    public Weapon(String name, int apcost, int damage) {
+        this.name = name;
+        this.apcost = apcost;
+        this.damage = damage;
+        this.melee = false;
+    }
+    public void attack() {
+    }
+    public String getName() {
+        return name;
+    }
+
+    public int getApcost() {
+        return apcost;
+    }
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public boolean isMelee() {
+        return melee;
+    }
+}
