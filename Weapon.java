@@ -1,8 +1,10 @@
 public abstract class Weapon {
-    private String name;
-    private int apcost;
-    private int damage;
-    private boolean melee = false;
+
+    protected String name;
+    protected int apcost;
+    protected int damage;
+    protected boolean melee;
+    protected boolean isEquipped = false;
 
     protected Weapon(String name, int apcost, int damage, boolean melee) {
         this.name = name;
@@ -10,14 +12,13 @@ public abstract class Weapon {
         this.damage = damage;
         this.melee = melee;
     }
-    public void attack() {
-    }
+
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getApcost() {
-        return apcost;
+        return this.apcost;
     }
 
     public int getDamage() {
@@ -25,6 +26,8 @@ public abstract class Weapon {
     }
 
     public boolean isMelee() {
-        return melee;
+        return this.melee;
     }
+
+    abstract public void attack();
 }

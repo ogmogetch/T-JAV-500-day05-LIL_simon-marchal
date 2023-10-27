@@ -1,19 +1,18 @@
 public abstract class Monster extends Unit {
 
     protected int damage = 0;
-    protected int apcost = 0;
-    protected int ap = getAp();
+    protected  int apcost = 0;
 
     protected Monster(String name, int hp, int ap) {
         super(name, hp, ap);
     }
 
-    public int getDamage(){
-        return damage;
+    public int getDamage() {
+        return this.damage;
     }
 
-    public int getApcost(){
-        return apcost;
+    public int getApcost() {
+        return this.apcost;
     }
 
     @Override
@@ -27,16 +26,18 @@ public abstract class Monster extends Unit {
         if (fighter == null) {
             return false;
         }
-        if (closeTo != fighter) {
-            System.out.println(getName() + ": I'm too far away from " + fighter.getName());
+        if (this.fighterClose != fighter) {
+            System.out.println(getName() + ": I'm too far away from " + fighter.getName() + ".");
             return false;
         }
-        if (ap < apcost) {
-            return false;        }
-        ap -= apcost;
-        System.out.println(getName() + " attacks " + fighter.getName());
-        fighter.receiveDamage(damage);
+        if (this.ap < this.apcost) {
+            return false;
+        }
+        this.ap -= this.apcost;
+        System.out.println(this.getName() + " attacks " + fighter.getName() + ".");
+        fighter.receiveDamage(this.damage);
         return true;
     }
+
 
 }

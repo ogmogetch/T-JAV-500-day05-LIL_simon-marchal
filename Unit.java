@@ -1,63 +1,61 @@
 public abstract class Unit implements Fighter {
-    private String name;
-    private int ap;
-    private int hp;
-    protected Fighter closeTo = null;
 
-    public Unit(String name, int ap, int hp) {
+    protected String name;
+    protected int hp;
+    protected int ap;
+    protected Fighter fighterClose = null;
+
+    protected Unit(String name, int hp, int ap) {
         this.name = name;
-        this.ap = ap;
         this.hp = hp;
+        this.ap = ap;
     }
 
-    protected Unit() {
+    @Override
+    public String getName() {
+        return this.name;
     }
 
+    @Override
+    public int getHp() {
+        return hp;
+    }
+
+    @Override
+    public int getAp() {
+        return ap;
+    }
 
     @Override
     public void receiveDamage(int damage) {
-        if (damage < 1) {
+        if(damage < 1) {
             return;
         }
-        if (damage >= this.hp) {
+        if(damage >= this.hp) {
             this.hp = 0;
         } else {
             this.hp -= damage;
         }
     }
+
+    @Override
     public boolean moveCloseTo(Fighter fighter) {
-        if (fighter == null) {
-            return false;
-        }
-        if (this.closeTo == fighter) {
+        if (this == fighter || fighter == null) { return false; }
+        if (this.fighterClose == null || this.fighterClose != fighter) {
+            this.fighterClose = fighter;
+            System.out.println(this.name + " is moving closer to " + fighter.getName() + ".");
             return true;
-        }
-        if (this.ap < 1) {
+        } else {
             return false;
         }
-        this.ap -= 1;
-        this.closeTo = fighter;
-        return true;
     }
 
+    @Override
     public void recoverAP() {
-        this.ap += 7;
-        if (this.ap > 50) {
+        if (this.ap + 7 > 50) {
             this.ap = 50;
+        } else {
+            this.ap += 7;
         }
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAp() {
-        return ap;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public abstract boolean equip(Weapon weapon);
 }
