@@ -2,12 +2,17 @@ public abstract class Unit implements Fighter {
     private String name;
     private int ap;
     private int hp;
+    protected Fighter closeTo = null;
 
     public Unit(String name, int ap, int hp) {
         this.name = name;
         this.ap = ap;
         this.hp = hp;
     }
+
+    protected Unit() {
+    }
+
 
     @Override
     public void receiveDamage(int damage) {
@@ -21,17 +26,24 @@ public abstract class Unit implements Fighter {
         }
     }
     public boolean moveCloseTo(Fighter fighter) {
-        if (fighter == this) {
+        if (fighter == null) {
             return false;
         }
-        System.out.println(name + " is moving closer to " + fighter.getName());
+        if (this.closeTo == fighter) {
+            return true;
+        }
+        if (this.ap < 1) {
+            return false;
+        }
+        this.ap -= 1;
+        this.closeTo = fighter;
         return true;
     }
 
     public void recoverAP() {
-        ap += 7;
-        if (ap > 50) {
-            ap = 50;
+        this.ap += 7;
+        if (this.ap > 50) {
+            this.ap = 50;
         }
     }
 
@@ -47,4 +59,5 @@ public abstract class Unit implements Fighter {
         return hp;
     }
 
+    public abstract boolean equip(Weapon weapon);
 }
